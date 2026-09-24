@@ -8,6 +8,21 @@ respecte les principes **SOLID** et la **Clean Architecture**.
 > [dépôt de l'équipe](https://github.com/AKLOUF/Jeu_d-echec_205-206), complétée après le rendu
 > (voir « Corrections après le rendu » plus bas).
 
+## 🎬 Aperçu
+
+Une partie jouée par le moteur (il joue les deux camps) depuis la position Roi + Tour contre Roi :
+
+![Partie jouée par le moteur](docs/partie-moteur.gif)
+
+Dialogue UCI avec le moteur, tel qu'une interface comme ChessX le mène :
+
+![Session UCI](docs/session-uci.png)
+
+> Les coups proviennent réellement du moteur. La stratégie par défaut (`RandomStrategy`) choisit
+> un coup légal au hasard, donc une nouvelle exécution donne d'autres coups.
+
+---
+
 ## 👥 Membres de l'équipe
 **Groupe TP 205-206 :**
 - Tanim VEER (206)
