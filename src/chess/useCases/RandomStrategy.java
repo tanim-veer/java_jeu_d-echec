@@ -2,7 +2,6 @@ package chess.useCases;
 
 import chess.businessLayer.board.Board;
 import chess.businessLayer.Move;
-import chess.businessLayer.Color;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ public class RandomStrategy implements IBotStrategy {
     public String findBestMove(Board board) {
         MoveGenerator generator = new MoveGenerator();
 
-        List<Move> moves = generator.generateLegalMoves(board, Color.WHITE);
+        List<Move> moves = generator.generateLegalMoves(board, board.getSideToMove());
 
         if (moves.isEmpty()) {
             return null;

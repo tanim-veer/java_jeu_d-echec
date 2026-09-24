@@ -1,5 +1,6 @@
 package chess.adaptator;
 
+import chess.businessLayer.Move;
 import chess.businessLayer.board.Board;
 import chess.useCases.BotStrategy;
 import chess.useCases.IBotStrategy;
@@ -27,6 +28,24 @@ public class UCIEngine {
         }
     }
 
+    // "position fen <FEN> moves e1e2 e8d8 ..." : l'interface renvoie toute la partie à chaque tour,
+    // il faut donc rejouer les coups après la position de départ.
+    private void loadPosition(String input) {
+        int movesIndex = input.indexOf(" moves ");
+        String base = (movesIndex >= 0) ? input.substring(0, movesIndex) : input;
+
+        board = new Board();
+        int fenIndex = base.indexOf(" fen ");
+        if (fenIndex >= 0) {
+            board.loadFen(base.substring(fenIndex + 5));
+        }
+        if (movesIndex >= 0) {
+            for (String uci : input.substring(movesIndex + 7).trim().split("\\s+")) {
+                board.performMove(Move.fromUCI(uci));
+            }
+        }
+    }
+
     private void handleCommand(String input) {
         String[] tokens = input.split(" ");
         String command = tokens[0];
@@ -43,12 +62,7 @@ public class UCIEngine {
                 break;
 
             case "position":
-                if (input.contains("startpos")) {
-                    board = new Board();
-                } else if (input.contains("fen")) {
-                    String fen = input.substring(input.indexOf("fen") + 4);
-                    board.loadFen(fen);
-                }
+                loadPosition(input);
                 break;
 
             case "go":

@@ -13,6 +13,7 @@ public class Board {
 
     public static final int BOARD_SIZE = 8;
     private final Map<Position, Square> tableau = new HashMap<>();
+    private Color sideToMove = Color.WHITE;
 
     public Board() {
         clear();
@@ -24,9 +25,14 @@ public class Board {
             Square originalSquare = entry.getValue();
             this.tableau.put(pos, new Square(originalSquare.getPiece()));
         }
+        this.sideToMove = original.sideToMove;
     }
 
-    public void clear() {
+    public Color getSideToMove() {
+        return sideToMove;
+    }
+
+    public final void clear() {
         tableau.clear();
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
@@ -62,6 +68,7 @@ public class Board {
 
         endSq.setPiece(pieceToMove);
         startSq.setPiece(null);
+        sideToMove = (sideToMove == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     public void putPiece(Position p, IPiece piece) {
@@ -74,8 +81,9 @@ public class Board {
     public void loadFen(String fen) {
         clear();
 
-        String[] parts = fen.split(" ");
+        String[] parts = fen.trim().split("\\s+");
         String piecePlacement = parts[0];
+        sideToMove = (parts.length > 1 && parts[1].equals("b")) ? Color.BLACK : Color.WHITE;
 
         int row = 7;
         int col = 0;

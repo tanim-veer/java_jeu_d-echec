@@ -2,7 +2,6 @@ package chess.useCases;
 
 import chess.businessLayer.board.Board;
 import chess.businessLayer.Move;
-import chess.businessLayer.Color;
 
 public class BotStrategy implements IBotStrategy {
 
@@ -10,7 +9,7 @@ public class BotStrategy implements IBotStrategy {
     public String findBestMove(Board board) {
         MoveGenerator generator = new MoveGenerator();
 
-        var moves = generator.generateLegalMoves(board, Color.WHITE);
+        var moves = generator.generateLegalMoves(board, board.getSideToMove());
 
         if (moves.isEmpty()) {
             return null;
