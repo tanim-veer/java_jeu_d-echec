@@ -4,7 +4,9 @@ Moteur d'échecs qui joue la finale **Roi + Tour (Blancs) contre Roi (Noirs)** e
 n'importe quelle interface d'échecs via le protocole **UCI** (ChessX, CuteChess…). Le développement
 respecte les principes **SOLID** et la **Clean Architecture**.
 
-> Projet d'équipe réalisé en BUT Informatique (R3-04). Ce dépôt est un fork du dépôt de l'équipe.
+> Projet d'équipe réalisé en BUT Informatique (R3-04). Ce dépôt est une copie du
+> [dépôt de l'équipe](https://github.com/AKLOUF/Jeu_d-echec_205-206), complétée après le rendu
+> (voir « Corrections après le rendu » plus bas).
 
 ## 👥 Membres de l'équipe
 **Groupe TP 205-206 :**
